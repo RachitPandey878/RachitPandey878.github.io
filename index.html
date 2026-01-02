@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rachit Pandey</title>
+
   <style>
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
       color: #111;
-      background: #fff;
+      background: #ffffff;
     }
+
     .wrap {
       max-width: 900px;
       margin: 0 auto;
       padding: 72px 20px;
     }
+
     .hero {
       display: grid;
       grid-template-columns: 1fr;
@@ -25,23 +28,27 @@
       border-radius: 16px;
       padding: 28px;
     }
+
     h1 {
       font-size: 44px;
       letter-spacing: -0.02em;
       margin: 0;
     }
+
     .subtitle {
       font-size: 18px;
       margin: 0;
       color: #333;
       max-width: 65ch;
     }
+
     .links {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-top: 10px;
     }
+
     .chip {
       display: inline-block;
       padding: 10px 12px;
@@ -51,13 +58,16 @@
       color: #111;
       font-size: 14px;
     }
+
     .chip:hover {
       border-color: #cfcfcf;
     }
+
     .section {
       margin-top: 26px;
       padding: 0 4px;
     }
+
     .section h2 {
       font-size: 16px;
       margin: 0 0 8px 0;
@@ -65,11 +75,13 @@
       text-transform: uppercase;
       color: #444;
     }
+
     .section p {
       margin: 0;
       color: #222;
       max-width: 75ch;
     }
+
     .footer {
       margin-top: 36px;
       font-size: 13px;
@@ -78,39 +90,67 @@
     }
   </style>
 </head>
+
 <body>
   <main class="wrap">
+
+    <!-- HERO SECTION -->
     <section class="hero">
       <h1>Rachit Pandey</h1>
+
       <p class="subtitle">
-        Computational biophysicist working on molecular dynamics, membrane biophysics, and
-        amyloid-β aggregation mechanisms.
+        Computational biophysicist working on molecular dynamics, membrane biophysics,
+        and amyloid-β aggregation mechanisms.
       </p>
 
       <nav class="links" aria-label="Primary links">
-        <!-- Replace the # links later -->
         <a class="chip" href="#" title="Add your CV link later">CV</a>
-        <a class="chip" href="https://scholar.google.com/citations?user=g0u9RS4AAAAJ&hl=en&oi=ao" title="my research works">Scholar</a>
-        <a class="chip" href="https://github.com/RachitPandey878" title="my github profile">GitHub</a>
-        <a class="chip" href="mailto:rp878@drexel.edu" title="my contact info">Email</a>
+
+        <a class="chip"
+           href="https://scholar.google.com/citations?user=g0u9RS4AAAAJ&hl=en&oi=ao"
+           title="My research works"
+           target="_blank"
+           rel="noopener">
+          Scholar
+        </a>
+
+        <a class="chip"
+           href="https://github.com/RachitPandey878"
+           title="My GitHub profile"
+           target="_blank"
+           rel="noopener">
+          GitHub
+        </a>
+
+        <a class="chip"
+           href="mailto:rp878@drexel.edu"
+           title="My contact info"
+           target="_blank"
+           rel="noopener">
+          Email
+        </a>
       </nav>
     </section>
 
+    <!-- ABOUT SECTION -->
     <section class="section">
       <h2>About</h2>
       <p>
         I study how peptides and lipids self-organize at the nanoscale, and how those interactions
-        can destabilize membranes. I also build reproducible analysis pipelines for large-scale simulations.
+        can destabilize membranes. I also build reproducible analysis pipelines for large-scale
+        molecular dynamics simulations.
       </p>
     </section>
 
+    <!-- FOOTER -->
     <section class="footer">
-      © <span id="y"></span> Rachit Pandey · Built with GitHub Pages
+      © <span id="year"></span> Rachit Pandey · Built with GitHub Pages
     </section>
+
   </main>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
