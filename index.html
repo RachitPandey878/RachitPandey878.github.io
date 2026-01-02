@@ -6,162 +6,183 @@
   <title>Rachit Pandey</title>
 
   <style>
+    :root {
+      --bg: #000;
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --line: rgba(255,255,255,0.16);
+      --hover: rgba(255,255,255,0.28);
+      --shadow: rgba(0,0,0,0.65);
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
+      background: var(--bg);
+      color: var(--text);
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      color: #111;
-      background: #ffffff;
+      overflow: hidden; /* single-screen */
     }
 
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 72px 20px;
-    }
-
-    .hero {
+    /* Full-screen stage */
+    .stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      border: 1px solid #e8e8e8;
-      border-radius: 16px;
+      place-items: center;
+      padding: 24px;
+    }
+
+    /* Video fills the screen */
+    .bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000;
+      filter: brightness(0.55) contrast(1.05) saturate(1.05);
+      transform: translateZ(0);
+    }
+
+    /* Dark veil to guarantee readability */
+    .veil {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(60% 60% at 35% 40%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.72) 70%, rgba(0,0,0,0.88) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.75));
+      pointer-events: none;
+    }
+
+    /* Content container */
+    .content {
+      position: relative;
+      width: min(980px, 100%);
       padding: 28px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
     }
 
     h1 {
-      font-size: 44px;
+      margin: 0 0 10px 0;
+      font-size: clamp(34px, 5vw, 56px);
       letter-spacing: -0.02em;
-      margin: 0;
+      text-shadow: 0 2px 18px var(--shadow);
     }
 
-    .subtitle {
-      font-size: 18px;
-      margin: 0;
-      color: #333;
-      max-width: 65ch;
+    .tagline {
+      margin: 0 0 18px 0;
+      font-size: clamp(16px, 2.1vw, 20px);
+      color: var(--muted);
+      max-width: 70ch;
+      text-shadow: 0 2px 18px var(--shadow);
     }
 
     .links {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .chip {
-      display: inline-block;
-      padding: 10px 12px;
-      border: 1px solid #e8e8e8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
       border-radius: 999px;
       text-decoration: none;
-      color: #111;
+      color: rgba(255,255,255,0.88);
       font-size: 14px;
+      letter-spacing: 0.01em;
+      transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+      background: rgba(0,0,0,0.15);
     }
 
     .chip:hover {
-      border-color: #cfcfcf;
+      border-color: var(--hover);
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-1px);
     }
 
-    .section {
-      margin-top: 26px;
-      padding: 0 4px;
-    }
-
-    .section h2 {
-      font-size: 16px;
-      margin: 0 0 8px 0;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      color: #444;
-    }
-
-    .section p {
-      margin: 0;
-      color: #222;
-      max-width: 75ch;
+    .chip:focus {
+      outline: none;
+      border-color: rgba(255,255,255,0.38);
     }
 
     .footer {
-      margin-top: 36px;
-      font-size: 13px;
-      color: #666;
-      padding: 0 4px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .bg-video { display: none; }
+      body { overflow: auto; }
+      .stage { height: auto; min-height: 100vh; }
     }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
+  <div class="stage">
+    <!-- IMPORTANT: put your video file in the repo and name it md_loop.mp4 (or change src below) -->
+    <video class="bg-video" autoplay muted loop playsinline preload="auto">
+      <source src="md_loop.mp4" type="video/mp4" />
+    </video>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
+    <div class="veil"></div>
+
+    <main class="content" aria-label="Homepage">
       <h1>Rachit Pandey</h1>
 
-      <p class="subtitle">
-        Computational biophysicist working on molecular dynamics, membrane biophysics,
-        and amyloid-β aggregation mechanisms.
+      <p class="tagline">
+        I study how matter organizes itself into life, and how improbable order emerges from molecular chaos.
       </p>
 
       <nav class="links" aria-label="Primary links">
-        <!-- CV placeholder (inactive for now) -->
         <a class="chip" href="#" title="Add your CV link later">CV</a>
 
-        <!-- These should open in a new tab -->
         <a class="chip js-newtab"
            href="https://scholar.google.com/citations?user=g0u9RS4AAAAJ&hl=en&oi=ao"
-           title="My research works"
-           target="_blank"
-           rel="noopener noreferrer">
+           title="Google Scholar">
           Scholar
         </a>
 
         <a class="chip js-newtab"
            href="https://github.com/RachitPandey878"
-           title="My GitHub profile"
-           target="_blank"
-           rel="noopener noreferrer">
+           title="GitHub">
           GitHub
         </a>
 
-        <!-- Email behavior varies by browser/OS, but we still request a new tab -->
         <a class="chip js-newtab"
            href="mailto:rp878@drexel.edu"
-           title="My contact info"
-           target="_blank"
-           rel="noopener noreferrer">
+           title="Email">
           Email
         </a>
       </nav>
-    </section>
 
-    <!-- ABOUT SECTION -->
-    <section class="section">
-      <h2>About</h2>
-      <p>
-        I study how peptides and lipids self-organize at the nanoscale, and how those interactions
-        can destabilize membranes. I also build reproducible analysis pipelines for large-scale
-        molecular dynamics simulations.
-      </p>
-    </section>
-
-    <!-- FOOTER -->
-    <section class="footer">
-      © <span id="year"></span> Rachit Pandey · Built with GitHub Pages
-    </section>
-
-  </main>
+      <div class="footer">
+        © <span id="year"></span> Rachit Pandey
+      </div>
+    </main>
+  </div>
 
   <script>
-    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Force new-tab behavior for the chips marked with .js-newtab.
-    // This avoids browsers/extensions that sometimes ignore target="_blank".
+    // Force new-tab behavior (works even when browsers/extensions ignore target="_blank")
     document.querySelectorAll("a.js-newtab").forEach((a) => {
       a.addEventListener("click", (e) => {
-        // If the browser already honors target=_blank, this still works.
-        // Prevent default to avoid "same-tab" navigation in strict setups.
         e.preventDefault();
         window.open(a.href, "_blank", "noopener,noreferrer");
       });
