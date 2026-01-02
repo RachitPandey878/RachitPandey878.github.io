@@ -104,29 +104,32 @@
       </p>
 
       <nav class="links" aria-label="Primary links">
+        <!-- CV placeholder (inactive for now) -->
         <a class="chip" href="#" title="Add your CV link later">CV</a>
 
-        <a class="chip"
+        <!-- These should open in a new tab -->
+        <a class="chip js-newtab"
            href="https://scholar.google.com/citations?user=g0u9RS4AAAAJ&hl=en&oi=ao"
            title="My research works"
            target="_blank"
-           rel="noopener">
+           rel="noopener noreferrer">
           Scholar
         </a>
 
-
-        <a class="chip"
+        <a class="chip js-newtab"
            href="https://github.com/RachitPandey878"
-           onclick="window.open(this.href, '_blank'); return false;">
-           GitHub
+           title="My GitHub profile"
+           target="_blank"
+           rel="noopener noreferrer">
+          GitHub
         </a>
 
-
-        <a class="chip"
+        <!-- Email behavior varies by browser/OS, but we still request a new tab -->
+        <a class="chip js-newtab"
            href="mailto:rp878@drexel.edu"
            title="My contact info"
            target="_blank"
-           rel="noopener">
+           rel="noopener noreferrer">
           Email
         </a>
       </nav>
@@ -150,7 +153,19 @@
   </main>
 
   <script>
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Force new-tab behavior for the chips marked with .js-newtab.
+    // This avoids browsers/extensions that sometimes ignore target="_blank".
+    document.querySelectorAll("a.js-newtab").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        // If the browser already honors target=_blank, this still works.
+        // Prevent default to avoid "same-tab" navigation in strict setups.
+        e.preventDefault();
+        window.open(a.href, "_blank", "noopener,noreferrer");
+      });
+    });
   </script>
 </body>
 </html>
